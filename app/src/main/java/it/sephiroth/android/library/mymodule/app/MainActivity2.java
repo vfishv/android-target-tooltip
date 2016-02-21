@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
     ViewPager mViewPager;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity2);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
@@ -43,9 +44,13 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
         setupViewPager(mViewPager);
         Tooltip.dbg = true;
 
+        Toast.makeText(this, "ksdjfsdò lfs jasdlfjsdf ò jsfjfò jdfl"
+            + "kflja slfjasdfòjasfòdjsfò"
+            + " asdjflkòdfjòl sfjòlsd fj", Toast.LENGTH_LONG).show();
+
     }
 
-    private Adapter setupViewPager (ViewPager viewPager) {
+    private Adapter setupViewPager(ViewPager viewPager) {
 
         if (viewPager.getAdapter() != null) {
             return (Adapter) viewPager.getAdapter();
@@ -64,12 +69,12 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
     }
 
     @Override
-    protected void onDestroy () {
+    protected void onDestroy() {
         super.onDestroy();
         mViewPager.removeOnPageChangeListener(this);
     }
 
-    private void test () {
+    private void test() {
         TabLayout tablayout = (TabLayout) findViewById(R.id.tabs);
         final ViewGroup root = (ViewGroup) tablayout.getChildAt(0);
         final View tab = root.getChildAt(1);
@@ -90,13 +95,13 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_demo2) {
@@ -108,17 +113,17 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
     }
 
     @Override
-    public void onPageScrolled (final int position, final float positionOffset, final int positionOffsetPixels) {
+    public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
 
     }
 
     @Override
-    public void onPageSelected (final int position) {
+    public void onPageSelected(final int position) {
 
     }
 
     @Override
-    public void onPageScrollStateChanged (final int state) {
+    public void onPageScrollStateChanged(final int state) {
 
     }
 
@@ -127,22 +132,22 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
         private final List<String> mFragmentTitles = new ArrayList<>();
         private Fragment mCurrentFragment;
 
-        public Adapter (FragmentManager fm) {
+        public Adapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment (Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }
 
         @Override
-        public Fragment getItem (int position) {
+        public Fragment getItem(int position) {
             return mFragments.get(position);
         }
 
         @Override
-        public void setPrimaryItem (final ViewGroup container, final int position, final Object object) {
+        public void setPrimaryItem(final ViewGroup container, final int position, final Object object) {
             if (getCurrentFragment() != object) {
                 mCurrentFragment = ((Fragment) object);
             }
@@ -150,17 +155,17 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
             super.setPrimaryItem(container, position, object);
         }
 
-        public Fragment getCurrentFragment () {
+        public Fragment getCurrentFragment() {
             return mCurrentFragment;
         }
 
         @Override
-        public int getCount () {
+        public int getCount() {
             return mFragments.size();
         }
 
         @Override
-        public CharSequence getPageTitle (int position) {
+        public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
         }
     }
@@ -172,6 +177,7 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
         Button mButton3;
         Button mButton4;
         Button mButton5;
+        Button mButton6;
         SwitchCompat mSwitch1;
         SwitchCompat mSwitch2;
         SwitchCompat mSwitch3;
@@ -181,13 +187,13 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
 
         @Nullable
         @Override
-        public View onCreateView (
+        public View onCreateView(
             final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
             return inflater.inflate(R.layout.activity2_fragment1, container, false);
         }
 
         @Override
-        public void onViewCreated (final View view, @Nullable final Bundle savedInstanceState) {
+        public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
             mButton1 = (Button) view.findViewById(R.id.button1);
@@ -195,11 +201,13 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
             mButton3 = (Button) view.findViewById(R.id.button3);
             mButton4 = (Button) view.findViewById(R.id.button4);
             mButton5 = (Button) view.findViewById(R.id.button5);
+            mButton6 = (Button) view.findViewById(R.id.button6);
             mButton1.setOnClickListener(this);
             mButton2.setOnClickListener(this);
             mButton3.setOnClickListener(this);
             mButton4.setOnClickListener(this);
             mButton5.setOnClickListener(this);
+            mButton6.setOnClickListener(this);
 
             mSwitch1 = (SwitchCompat) view.findViewById(R.id.switch1);
             mSwitch2 = (SwitchCompat) view.findViewById(R.id.switch2);
@@ -219,12 +227,12 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
         }
 
         @Override
-        public void onActivityCreated (@Nullable final Bundle savedInstanceState) {
+        public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
         }
 
         @Override
-        public void onClick (final View v) {
+        public void onClick(final View v) {
             final int id = v.getId();
 
             Log.i(TAG, "onClick: " + id);
@@ -237,17 +245,16 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
                     getContext(),
                     new Tooltip.Builder()
                         .anchor(v, Tooltip.Gravity.RIGHT)
-                        .closePolicy(mClosePolicy, 5000)
+                        .closePolicy(mClosePolicy, 3000)
                         .text(
                             "RIGHT. Touch outside to close this tooltip. RIGHT. Touch outside to close this tooltip. RIGHT. Touch"
                                 + " outside to close this tooltip.")
                         .withArrow(true)
                         .fitToScreen(true)
-                        .maxWidth((int) (metrics.widthPixels / 2))
+                        .maxWidth(metrics.widthPixels / 2)
                         .withOverlay(true)
                         .withCallback(this)
                         .activateDelay(500)
-                        .floatingAnimation(AnimationBuilder.DEFAULT)
                         .build()
                 ).show();
 
@@ -258,11 +265,12 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
                     new Tooltip.Builder()
                         .anchor(mButton2, Tooltip.Gravity.BOTTOM)
                         .fitToScreen(true)
-                        .closePolicy(mClosePolicy, 10000)
+                        .closePolicy(mClosePolicy, 3000)
                         .text("BOTTOM. Touch outside to dismiss the tooltip")
                         .withArrow(true)
                         .maxWidth(metrics.widthPixels / 2)
                         .withCallback(this)
+                        .floatingAnimation(AnimationBuilder.DEFAULT)
                         .build()
                 ).show();
 
@@ -290,6 +298,7 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
                         .withArrow(true)
                         .withOverlay(false)
                         .maxWidth(metrics.widthPixels / 3)
+                        .floatingAnimation(AnimationBuilder.DEFAULT)
                         .withCallback(this)
                         .build()
                 ).show();
@@ -307,6 +316,7 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
                             .withArrow(false)
                             .withOverlay(false)
                             .maxWidth(metrics.widthPixels / 3)
+                            .floatingAnimation(AnimationBuilder.DEFAULT)
                             .showDelay(300)
                             .withCallback(this)
                             .build()
@@ -316,12 +326,14 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
                     tooltip.hide();
                     tooltip = null;
                 }
-
+            } else if (id == mButton6.getId()) {
+                final FragmentManager manager = getChildFragmentManager();
+                new MyDialogFragment().show(manager, "dialog");
             }
         }
 
         @Override
-        public void onTooltipClose (final Tooltip.TooltipView view, final boolean fromUser, final boolean containsTouch) {
+        public void onTooltipClose(final Tooltip.TooltipView view, final boolean fromUser, final boolean containsTouch) {
             Log.d(TAG, "onTooltipClose: " + view + ", fromUser: " + fromUser + ", containsTouch: " + containsTouch);
             if (null != tooltip && tooltip.getTooltipId() == view.getTooltipId()) {
                 tooltip = null;
@@ -329,22 +341,22 @@ public class MainActivity2 extends AppCompatActivity implements OnPageChangeList
         }
 
         @Override
-        public void onTooltipFailed (Tooltip.TooltipView view) {
+        public void onTooltipFailed(Tooltip.TooltipView view) {
             Log.d(TAG, "onTooltipFailed: " + view.getTooltipId());
         }
 
         @Override
-        public void onTooltipShown (Tooltip.TooltipView view) {
+        public void onTooltipShown(Tooltip.TooltipView view) {
             Log.d(TAG, "onTooltipShown: " + view.getTooltipId());
         }
 
         @Override
-        public void onTooltipHidden (Tooltip.TooltipView view) {
+        public void onTooltipHidden(Tooltip.TooltipView view) {
             Log.d(TAG, "onTooltipHidden: " + view.getTooltipId());
         }
 
         @Override
-        public void onCheckedChanged (final CompoundButton buttonView, final boolean isChecked) {
+        public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
             Log.i(TAG, "onCheckedChanged: " + buttonView.getId() + ", checked: " + isChecked);
 
             Log.v(TAG, "[pre] closePolicy: " + mClosePolicy.getPolicy());
